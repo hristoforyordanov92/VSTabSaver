@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CommandTable xmlns="http://schemas.microsoft.com/VisualStudio/2005-10-18/CommandTable" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+	<Extern href="stdidcmd.h"/>
+	<Extern href="vsshlids.h"/>
+	<Include href="KnownImageIds.vsct"/>
+	<Include href="VSGlobals.vsct"/>
+
+	<Commands package="TabSaver">
+		<Groups>
+			<Group guid="TabSaver" id="MyMenuGroup" priority="0x0600">
+				<Parent guid="VSMainMenu" id="Tools"/>
+			</Group>
+		</Groups>
+
+		<Buttons>
+			<Button guid="TabSaver" id="SaveTabsCommand" priority="0x0100" type="Button">
+				<Parent guid="TabSaver" id="MyMenuGroup" />
+				<Icon guid="ImageCatalogGuid" id="SaveTable" />
+				<CommandFlag>IconIsMoniker</CommandFlag>
+				<Strings>
+					<ButtonText>Save Tabs</ButtonText>
+					<LocCanonicalName>.Tools.SaveTabs</LocCanonicalName>
+				</Strings>
+			</Button>
+
+			<Button guid="TabSaver" id="LoadTabsCommand" priority="0x0101" type="Button">
+				<Parent guid="TabSaver" id="MyMenuGroup" />
+				<Icon guid="ImageCatalogGuid" id="UploadDocument" />
+				<CommandFlag>IconIsMoniker</CommandFlag>
+				<Strings>
+					<ButtonText>Load Tabs</ButtonText>
+					<LocCanonicalName>.Tools.LoadTabs</LocCanonicalName>
+				</Strings>
+			</Button>
+		</Buttons>
+	</Commands>
+
+	<Symbols>
+		<GuidSymbol name="TabSaver" value="{831c4fde-f595-496a-9b65-b5adce8ce935}">
+			<IDSymbol name="MyMenuGroup" value="0x0001" />
+			<IDSymbol name="SaveTabsCommand" value="0x0100" />
+			<IDSymbol name="LoadTabsCommand" value="0x0101" />
+		</GuidSymbol>
+	</Symbols>
+</CommandTable>
