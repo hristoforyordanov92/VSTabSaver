@@ -39,7 +39,7 @@ namespace TabSaver
     }
 
     [Command(PackageIds.RestoreSavedTabsCommand)]
-    internal sealed class LoadTabsCommand : BaseCommand<LoadTabsCommand>
+    internal sealed class RestoreSavedTabsCommand : BaseCommand<RestoreSavedTabsCommand>
     {
         protected override void Execute(object sender, EventArgs e)
         {
