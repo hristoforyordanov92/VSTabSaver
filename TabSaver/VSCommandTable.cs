@@ -12,16 +12,19 @@ namespace TabSaver
     /// </summary>
     internal sealed partial class PackageGuids
     {
-        public const string TabSaverString = "831c4fde-f595-496a-9b65-b5adce8ce935";
-        public static Guid TabSaver = new Guid(TabSaverString);
+        public const string TabSaverPackageString = "31a662c6-2290-450a-846e-3b85c6fe17a2";
+        public static Guid TabSaverPackage = new Guid(TabSaverPackageString);
     }
     /// <summary>
     /// Helper class that encapsulates all CommandIDs uses across VS Package.
     /// </summary>
     internal sealed partial class PackageIds
     {
-        public const int MyMenuGroup = 0x0001;
-        public const int SaveTabsCommand = 0x0100;
-        public const int LoadTabsCommand = 0x0101;
+        public const int TabSaverMenu = 0x0001;
+        public const int MainMenuTabSaverGroup = 0x0010;
+        public const int TabSaverCommandsGroup = 0x0020;
+        public const int SavePinnedTabsCommand = 0x0100;
+        public const int SaveAllTabsCommand = 0x0101;
+        public const int RestoreSavedTabsCommand = 0x0102;
     }
 }

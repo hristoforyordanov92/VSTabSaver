@@ -32,7 +32,11 @@ namespace TabSaver
         private static string SolutionsSettingsFilePath =>
             Path.Combine(ExtensionFolder, "SolutionsSettings.txt");
 
-        private static SolutionsSettings SolutionsSettings => GetSavedSolutionsSettings();
+        private static void SaveSolutionsSettingsFile(SolutionsSettings solutionsSettings)
+        {
+            string serializedSaveFile = JsonConvert.SerializeObject(solutionsSettings, Formatting.Indented);
+            File.WriteAllText(SolutionsSettingsFilePath, serializedSaveFile);
+        }
 
         private static SolutionsSettings GetSavedSolutionsSettings()
         {
@@ -43,7 +47,9 @@ namespace TabSaver
             }
             else
             {
-                return new SolutionsSettings();
+                SolutionsSettings newSettings = new();
+                SaveSolutionsSettingsFile(newSettings);
+                return newSettings;
             }
         }
 
@@ -52,18 +58,20 @@ namespace TabSaver
             if (string.IsNullOrWhiteSpace(solutionName))
                 return null;
 
-            return SolutionsSettings.Solutions.FirstOrDefault(s =>
+            SolutionsSettings currentSettings = GetSavedSolutionsSettings();
+
+            return currentSettings.Solutions.FirstOrDefault(s =>
                 string.Equals(s.FullName, solutionName, StringComparison.OrdinalIgnoreCase));
         }
 
-        public static void Save(Solution solution)
+        public static void SaveSolution(Solution solution)
         {
             Directory.CreateDirectory(ExtensionFolder);
 
             if (solution == null)
                 return;
 
-            SolutionsSettings currentSettings = SolutionsSettings;
+            SolutionsSettings currentSettings = GetSavedSolutionsSettings();
 
             int savedSolutionIndex =
                 currentSettings.Solutions.FindIndex(s =>
@@ -78,8 +86,7 @@ namespace TabSaver
                 currentSettings.Solutions.Add(solution);
             }
 
-            string serializedSaveFile = JsonConvert.SerializeObject(currentSettings, Formatting.Indented);
-            File.WriteAllText(SolutionsSettingsFilePath, serializedSaveFile);
+            SaveSolutionsSettingsFile(currentSettings);
         }
     }
 }

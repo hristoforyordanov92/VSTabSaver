@@ -6,41 +6,69 @@
 	<Include href="KnownImageIds.vsct"/>
 	<Include href="VSGlobals.vsct"/>
 
-	<Commands package="TabSaver">
+	<Commands package="TabSaverPackage">
+		<Menus>
+			<Menu guid="TabSaverPackage" id="TabSaverMenu" priority="0x0600" type="Menu">
+				<Parent guid="TabSaverPackage" id="MainMenuTabSaverGroup" />
+				<Strings>
+					<ButtonText>Tab Saver</ButtonText>
+				</Strings>
+			</Menu>
+		</Menus>
+
 		<Groups>
-			<Group guid="TabSaver" id="MyMenuGroup" priority="0x0600">
-				<Parent guid="VSMainMenu" id="Tools"/>
+			<Group guid="TabSaverPackage" id="MainMenuTabSaverGroup" priority="0x0600">
+				<Parent guid="VSMainMenu" id="Tools" />
+			</Group>
+
+			<Group guid="TabSaverPackage" id="TabSaverCommandsGroup" priority="0x0600">
+				<Parent guid="TabSaverPackage" id="TabSaverMenu"/>
 			</Group>
 		</Groups>
 
 		<Buttons>
-			<Button guid="TabSaver" id="SaveTabsCommand" priority="0x0100" type="Button">
-				<Parent guid="TabSaver" id="MyMenuGroup" />
-				<Icon guid="ImageCatalogGuid" id="SaveTable" />
+			<Button guid="TabSaverPackage" id="SavePinnedTabsCommand" priority="0x0101" type="Button">
+				<Parent guid="TabSaverPackage" id="TabSaverCommandsGroup" />
+				<Icon guid="ImageCatalogGuid" id="Save" />
 				<CommandFlag>IconIsMoniker</CommandFlag>
 				<Strings>
-					<ButtonText>Save Tabs</ButtonText>
-					<LocCanonicalName>.Tools.SaveTabs</LocCanonicalName>
+					<ButtonText>Save Pinned Tabs</ButtonText>
+					<LocCanonicalName>.Tools.TabSaver.SavePinnedTabs</LocCanonicalName>
 				</Strings>
 			</Button>
 
-			<Button guid="TabSaver" id="LoadTabsCommand" priority="0x0101" type="Button">
-				<Parent guid="TabSaver" id="MyMenuGroup" />
-				<Icon guid="ImageCatalogGuid" id="UploadDocument" />
+			<Button guid="TabSaverPackage" id="SaveAllTabsCommand" priority="0x0102" type="Button">
+				<Parent guid="TabSaverPackage" id="TabSaverCommandsGroup" />
+				<Icon guid="ImageCatalogGuid" id="SaveAll" />
 				<CommandFlag>IconIsMoniker</CommandFlag>
 				<Strings>
-					<ButtonText>Load Tabs</ButtonText>
-					<LocCanonicalName>.Tools.LoadTabs</LocCanonicalName>
+					<ButtonText>Save All Tabs</ButtonText>
+					<LocCanonicalName>.Tools.TabSaver.SaveAllTabs</LocCanonicalName>
+				</Strings>
+			</Button>
+
+			<Button guid="TabSaverPackage" id="RestoreSavedTabsCommand" priority="0x0103" type="Button">
+				<Parent guid="TabSaverPackage" id="TabSaverCommandsGroup" />
+				<Icon guid="ImageCatalogGuid" id="Refresh" />
+				<CommandFlag>IconIsMoniker</CommandFlag>
+				<Strings>
+					<ButtonText>Restore Saved Tabs</ButtonText>
+					<LocCanonicalName>.Tools.TabSaver.RestoreSavedTabs</LocCanonicalName>
 				</Strings>
 			</Button>
 		</Buttons>
 	</Commands>
 
 	<Symbols>
-		<GuidSymbol name="TabSaver" value="{831c4fde-f595-496a-9b65-b5adce8ce935}">
-			<IDSymbol name="MyMenuGroup" value="0x0001" />
-			<IDSymbol name="SaveTabsCommand" value="0x0100" />
-			<IDSymbol name="LoadTabsCommand" value="0x0101" />
+		<GuidSymbol name="TabSaverPackage" value="{31A662C6-2290-450A-846E-3B85C6FE17A2}">
+			<IDSymbol name="TabSaverMenu" value="0x0001" />
+
+			<IDSymbol name="MainMenuTabSaverGroup" value="0x0010" />
+			<IDSymbol name="TabSaverCommandsGroup" value="0x0020" />
+
+			<IDSymbol name="SavePinnedTabsCommand" value="0x0100" />
+			<IDSymbol name="SaveAllTabsCommand" value="0x0101" />
+			<IDSymbol name="RestoreSavedTabsCommand" value="0x0102" />
 		</GuidSymbol>
 	</Symbols>
 </CommandTable>
