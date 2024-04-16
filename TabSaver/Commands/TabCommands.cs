@@ -4,23 +4,6 @@ using Microsoft.VisualStudio.Shell.Interop;
 
 namespace TabSaver
 {
-    [Command(PackageIds.TestButton)]
-    internal sealed class Test : BaseCommand<Test>
-    {
-        protected override void Execute(object sender, EventArgs e)
-        {
-            ThreadHelper.ThrowIfNotOnUIThread();
-
-            DTE2 dte = (DTE2)ServiceProvider.GlobalProvider.GetService(typeof(DTE));
-
-            Solution solution = new(dte.Solution.FullName);
-
-            solution.Tabs.AddRange(CommandUtils.ExtractAllOpenTabs(dte.Documents, true));
-
-            SaveFileManager.SaveSolution(solution);
-        }
-    }
-
     [Command(PackageIds.SavePinnedTabsCommand)]
     internal sealed class SavePinnedTabsCommand : BaseCommand<SavePinnedTabsCommand>
     {
