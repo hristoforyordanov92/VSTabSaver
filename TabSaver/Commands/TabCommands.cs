@@ -65,9 +65,9 @@ namespace TabSaver
                     if (proj == null)
                         continue;
 
-                    dte.Documents.Open(tab.FullName);
+                    Document document = dte.Documents.Open(tab.FullName);
 
-                    if (tab.IsPinned)
+                    if (tab.IsPinned && !CommandUtils.IsDocumentPinned(document))
                         dte.ExecuteCommand("Window.PinTab");
                 }
                 catch (Exception)
